@@ -29,6 +29,10 @@ public class TokenProvider {
     private String makeToken(Date expiry,User user){
         Date now = new Date();
 
+        Claims claims = Jwts.claims();
+
+        claims.put("id",user.getId());//클레임 id : 유저 ID
+
         return Jwts.builder()
                 .setHeaderParam(Header.TYPE, Header.JWT_TYPE) //헤더 typ : JWT
                 // 내용 iss : application.yml에 저장한 issuer 키의 값이 들어가게 됨
@@ -36,7 +40,7 @@ public class TokenProvider {
                 .setIssuedAt(now)           //내용 iat : 현재 시간
                 .setExpiration(expiry)      //내용 exp : expiry 멤버 변수값
                 .setSubject(user.getEmail())//내용 sub : 유저의 이메일
-                .claim("id",user.getId())//클레임 id : 유저 ID
+                .setClaims(claims)
                 // 서명 : 비밀값과 함께 해시값을 HS256 방식으로 암호화
                 .signWith(SignatureAlgorithm.HS256, jwtProperties.getSecretKey())
                 .compact();
