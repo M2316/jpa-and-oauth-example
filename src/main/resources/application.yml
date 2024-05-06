@@ -14,3 +14,6 @@ spring:
       enabled: true
 server:
   port: 8081
+jwt:
+  issuer: myDomainName.com
+  secret_key: key-is-secret
