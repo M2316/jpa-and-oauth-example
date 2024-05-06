@@ -5,30 +5,30 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
 
 import java.time.Duration;
-import java.util.Collections;
 import java.util.Date;
 import java.util.Map;
 
+import static java.util.Collections.emptyMap;
+
 //이 파일은 JWT 토큰 서비스를 테스트하는 데 사용할 모킹(mocking)용 객체입니다.
 //테스트를 실행할 때 객체를 대신하는 가짜 객체임...
-@Getter
+@Data
 public class JwtFactory {
     private String subject = "test@email.com";
     private Date issuedAt = new Date();
     private Date expiration = new Date(new Date().getTime() + Duration.ofDays(14).toMillis());
-    private Map<String, Object> claims = Collections.emptyMap();
+    private Map<String, Object> claims = emptyMap();
 
 
     //빌더 패턴을 사요ㅕㅇ해 설정이 필요한 데이터만 선택 설정
     @Builder
     public JwtFactory(String subject,Date issuedAt, Date expiration, Map<String,Object> claims){
         this.subject = subject != null ? subject : this.subject;
-        this.issuedAt = subject != null ? issuedAt : this.issuedAt;
-        this.expiration = subject != null ? expiration : this.expiration;
-        this.claims = subject != null ? claims : this.claims;
+        this.issuedAt = issuedAt != null ? issuedAt : this.issuedAt;
+        this.expiration = expiration != null ? expiration : this.expiration;
+        this.claims = claims != null ? claims : this.claims;
     }
 
     public static JwtFactory withDefaultValues(){
