@@ -1,0 +1,7 @@
+Google
+클라이언트 ID
+731186774328-9fp8lhqr0gd3frk0qj07tn0u62ta4ls1.apps.googleusercontent.com
+
+
+클라이언트 보안 비밀번호
+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
