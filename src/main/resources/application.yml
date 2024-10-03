@@ -17,8 +17,8 @@ spring:
       client:
         registration:
           google:
-            client-id: 731186774328-9fp8lhqr0gd3frk0qj07tn0u62ta4ls1.apps.googleusercontent.com
-            client-secret: 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
+            client-id: #발급받은 id
+            client-secret: #발급받은 secret key
             scope:
               - email
               - profile
